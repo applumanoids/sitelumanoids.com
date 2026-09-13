@@ -3,6 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="color-scheme" content="light">
+<meta name="theme-color" content="#0C1526">
 <title>Lumanoids – Dados, Automação e Inteligência para negócios</title>
 <meta name="description" content="Dashboards, análise de dados e automações para tornar sua empresa mais eficiente. Você foca no resultado, a Lumanoids cuida da solução.">
 <meta name="keywords" content="automação de processos, automação de relatórios, VBA, Python, Power BI, Power Query, Power Automate, dashboard, análise de dados, PME">
@@ -10,6 +12,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
   :root {
+    color-scheme: light only;
     --ink: #0C1526;
     --ink-2: #16233D;
     --ink-3: #1E2E4D;
@@ -37,7 +40,7 @@
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; scroll-padding-top: 24px; }
-  body { font-family: 'Inter', -apple-system, sans-serif; background: var(--white); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
+  body { overflow-x: hidden; font-family: 'Inter', -apple-system, sans-serif; background: var(--white); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; }
   img, svg { display: block; max-width: 100%; }
   a { color: inherit; }
   a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; border-radius: 4px; }
@@ -66,13 +69,18 @@
   .tb-actions { display: flex; align-items: center; gap: 10px; }
   .tb-wpp { width: 36px; height: 36px; border-radius: 9px; background: rgba(22,163,74,.15); border: 1px solid rgba(34,197,94,.4); display: flex; align-items: center; justify-content: center; }
   .tb-wpp svg { width: 17px; height: 17px; }
-  .hamburger { width: 38px; height: 36px; border-radius: 9px; border: 1px solid rgba(255,255,255,.18); background: transparent; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 4px; cursor: pointer; }
-  .hamburger span { width: 17px; height: 1.8px; background: #fff; border-radius: 2px; }
+  .hamburger { height: 42px; padding: 0 16px 0 13px; border-radius: 10px; border: none; background: #FFFFFF; display: flex; align-items: center; gap: 10px; cursor: pointer; color: var(--ink); font-family: inherit; font-size: .9rem; font-weight: 700; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  .hamburger:active { background: #E8EEF9; }
+  .hb-bars { display: flex; flex-direction: column; gap: 4px; }
+  .hb-bars span { width: 18px; height: 2.4px; background: var(--ink); border-radius: 2px; display: block; }
+  .hamburger .hb-label { line-height: 1; }
+  .sb-close { display: none; width: 100%; margin-bottom: 20px; padding: 12px 14px; border-radius: 10px; border: 1px solid rgba(255,255,255,.3); background: rgba(255,255,255,.1); color: #fff; font-family: inherit; font-size: .88rem; font-weight: 600; cursor: pointer; align-items: center; justify-content: center; gap: 8px; }
   .sb-overlay { display: none; position: fixed; inset: 0; background: rgba(12,21,38,.55); z-index: 195; }
   .sb-overlay.open { display: block; }
 
   /* ---------- LAYOUT ---------- */
-  .main { margin-left: var(--sidebar-w); min-height: 100vh; background: var(--white); }
+  .main { margin-left: var(--sidebar-w); min-height: 100vh; background: var(--white); overflow-x: hidden; }
+  .contact p, .guide .g, .card p { overflow-wrap: anywhere; }
   .wrap { padding: 0 clamp(24px, 4vw, 56px); }
   .band { padding: clamp(56px, 6vw, 86px) 0; }
   .band-bg { background: var(--bg); }
@@ -82,6 +90,7 @@
   .sec-head { display: grid; grid-template-columns: minmax(240px, 1fr) minmax(0, 1.15fr) auto; gap: 26px; align-items: end; margin-bottom: 34px; }
   .sec-head .link-more { color: var(--blue); font-weight: 600; font-size: .88rem; text-decoration: none; border-bottom: 1px solid var(--blue-100); padding-bottom: 4px; display: inline-flex; align-items: center; gap: 8px; white-space: nowrap; }
   .sec-head .link-more:hover { border-bottom-color: var(--blue); }
+  .sec-head.two { grid-template-columns: minmax(240px, 1fr) minmax(0, 1.15fr); }
   .sec-head-center { text-align: center; max-width: 640px; margin: 0 auto 38px; }
   .sec-head-center .lead { margin: 0 auto; }
 
@@ -202,6 +211,14 @@
   .tech h4 { font-size: .84rem; color: var(--muted); font-weight: 600; margin-bottom: 16px; }
   .tech-items { display: flex; flex-wrap: wrap; gap: 10px; justify-content: center; }
   .tech-item { font-size: .82rem; font-weight: 600; color: var(--text); border: 1px solid var(--line); background: #fff; border-radius: 100px; padding: 8px 18px; }
+  .logo-strip { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; max-width: 780px; margin: 0 auto; }
+  .logo-card { background: #fff; border: 1px solid var(--line); border-radius: 12px; padding: 16px 8px 12px; text-align: center; box-shadow: var(--shadow-sm); transition: transform .18s, box-shadow .18s, border-color .18s; }
+  .logo-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); border-color: var(--blue-100); }
+  .logo-card .lg { width: 38px; height: 38px; margin: 0 auto 10px; display: flex; align-items: center; justify-content: center; }
+  .logo-card .lg svg { width: 100%; height: 100%; }
+  .logo-card .nm { font-size: .76rem; font-weight: 600; color: var(--text); line-height: 1.3; }
+  @media (max-width: 860px) { .logo-strip { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 480px) { .logo-strip { grid-template-columns: repeat(3, 1fr); gap: 10px; } .logo-card { padding: 14px 6px 10px; } .logo-card .lg { width: 32px; height: 32px; } .logo-card .nm { font-size: .71rem; } }
 
   /* ---------- PLANOS ---------- */
   .tabs { display: flex; gap: 8px; justify-content: center; flex-wrap: wrap; margin-bottom: 10px; }
@@ -381,13 +398,15 @@
     .plans { grid-template-columns: repeat(2, 1fr); }
     .steps { grid-template-columns: repeat(3, 1fr); }
     .contacts { grid-template-columns: repeat(2, 1fr); }
-    .sec-head { grid-template-columns: 1fr; align-items: start; gap: 14px; }
+    .sec-head, .sec-head.two { grid-template-columns: 1fr; align-items: start; gap: 14px; }
   }
   @media (max-width: 1080px) {
     :root { --sidebar-w: 0px; }
     .sidebar { transform: translateX(-100%); transition: transform .25s ease; width: 270px; }
     .sidebar.open { transform: translateX(0); }
     .topbar { display: flex; }
+    html { scroll-padding-top: 78px; }
+    .sb-close { display: flex; }
     .main { margin-left: 0; }
     .hero { grid-template-columns: 1fr; }
     .hero-right { padding: 34px 24px 44px; }
@@ -401,6 +420,21 @@
     .cta-strip .cs-note { border-left: none; padding-left: 0; border-top: 1px solid var(--blue-100); padding-top: 16px; }
     .charts.c2, .charts.ceq { grid-template-columns: 1fr; }
     .steps { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 620px) {
+    .mon-kpis { grid-template-columns: repeat(2, 1fr); }
+    .mon-row.r2 { grid-template-columns: 1fr; }
+    .hero-right { padding: 26px 18px 34px; }
+    .monitor { padding: 7px; }
+    .mon-body { padding: 10px; }
+    .pf-view { padding: 15px; }
+    .cbox, .kpi { padding: 13px; }
+    .guide { padding: 18px 16px; }
+    .big-card { padding: 26px 18px; }
+    .cta-strip { padding: 22px 18px; }
+    table.mini th, table.mini td { padding: 7px 5px; font-size: .76rem; }
+    .hbar .lb { width: 62px; font-size: .74rem; }
+    .hbar .vl { width: 42px; font-size: .74rem; }
   }
   @media (max-width: 700px) {
     .cards-4, .cards-3, .cards-2 { grid-template-columns: 1fr; }
@@ -455,19 +489,17 @@
 
 <!-- SIDEBAR -->
 <aside class="sidebar" id="sidebar">
+  <button class="sb-close" id="sbClose" aria-label="Fechar menu">✕ Fechar menu</button>
   <div class="sb-brand">
     <a href="#hero" class="sb-logo">Lumanoids</a>
     <div class="sb-tagline">Dados • Automação • Inteligência</div>
   </div>
   <div class="sb-rule"></div>
-  <nav class="sb-nav" id="sbNav">
+  <nav class="sb-nav">
     <a href="#hero" class="sb-link active" data-sec="hero"><svg viewBox="0 0 24 24"><use href="#i-home"/></svg> Início</a>
-    <a href="#dados" class="sb-link" data-sec="dados"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg> Dados &amp; BI</a>
-    <a href="#automacao" class="sb-link" data-sec="automacao"><svg viewBox="0 0 24 24"><use href="#i-gear"/></svg> Automação</a>
-    <a href="#servicos" class="sb-link" data-sec="servicos"><svg viewBox="0 0 24 24"><use href="#i-bulb"/></svg> Soluções</a>
-    <a href="#portfolio" class="sb-link" data-sec="portfolio"><svg viewBox="0 0 24 24"><use href="#i-folder"/></svg> Portfólio</a>
-    <a href="#solicitacoes" class="sb-link" data-sec="solicitacoes"><svg viewBox="0 0 24 24"><use href="#i-file"/></svg> Solicitações</a>
     <a href="#sobre" class="sb-link" data-sec="sobre"><svg viewBox="0 0 24 24"><use href="#i-user"/></svg> Sobre</a>
+    <a href="#servicos" class="sb-link" data-sec="servicos"><svg viewBox="0 0 24 24"><use href="#i-bulb"/></svg> Nossos Serviços</a>
+    <a href="#precos" class="sb-link" data-sec="precos"><svg viewBox="0 0 24 24"><use href="#i-money"/></svg> Planos e Preços</a>
     <a href="#contato" class="sb-link" data-sec="contato"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg> Contato</a>
   </nav>
   <a href="https://wa.me/5511998899271" target="_blank" rel="noopener" class="sb-wpp">
@@ -487,12 +519,14 @@
     <a href="https://wa.me/5511998899271" target="_blank" rel="noopener" class="tb-wpp" aria-label="Falar no WhatsApp">
       <svg viewBox="0 0 24 24" fill="#4ADE80"><use href="#i-wpp"/></svg>
     </a>
-    <button class="hamburger" id="hamburger" aria-label="Abrir menu"><span></span><span></span><span></span></button>
+    <button class="hamburger" id="hamburger" aria-label="Abrir menu" aria-expanded="false" aria-controls="sidebar">
+      <span class="hb-bars"><span></span><span></span><span></span></span>
+      <span class="hb-label" id="hbLabel">Menu</span>
+    </button>
   </div>
 </header>
 
 <main class="main">
-
 <!-- HERO -->
 <section id="hero" class="hero">
   <div class="hero-left">
@@ -572,16 +606,39 @@
   </div>
 </section>
 
-<!-- NOSSOS SERVIÇOS -->
-<section id="servicos" class="band band-bg">
+<!-- SOBRE -->
+<section id="sobre" class="band band-bg">
   <div class="wrap">
-    <div class="sec-head rv">
+    <div class="about">
+      <div class="about-box rv">
+        <div class="ab-logo">Lumanoids</div>
+        <div class="ab-tag">Dados • Automação • Inteligência</div>
+        <div class="ab-quote">“Transformamos dados em informação, processos manuais em automações e informações em decisões.”</div>
+      </div>
+      <div class="about-text rv">
+        <p class="eyebrow">Nossa história</p>
+        <h2 class="title" style="margin-bottom:16px">Tecnologia para quem não precisa entender de tecnologia</h2>
+        <p>A <strong>Lumanoids</strong> nasceu da observação de um problema real: empresas com dados abundantes e rotinas cheias de tarefas manuais, mas sem tempo e sem clareza para agir.</p>
+        <p>Nossa missão é <strong>tirar o trabalho repetitivo do caminho</strong> e deixar as informações acessíveis para gestores e donos de negócio, sem precisar saber programar ou montar planilhas complexas.</p>
+        <p>Você não precisa saber o que é VBA, Power Query ou ETL. Você só precisa saber que existe um problema na empresa, e a Lumanoids ajuda a resolver.</p>
+        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
+          <a href="#solicitacoes" class="btn btn-blue">Solicitar projeto</a>
+          <a href="https://wa.me/5511998899271" target="_blank" rel="noopener" class="btn btn-wpp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wpp"/></svg> Conversar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSSOS SERVIÇOS -->
+<section id="servicos" class="band">
+  <div class="wrap">
+    <div class="sec-head two rv">
       <div>
-        <p class="eyebrow">Soluções práticas para o seu dia a dia</p>
+        <p class="eyebrow">O que a Lumanoids faz</p>
         <h2 class="title">Nossos serviços</h2>
       </div>
       <p class="lead">Cuidamos de todo o processo, da análise dos dados à automação, para que sua empresa ganhe tempo, reduza erros e tome melhores decisões.</p>
-      <a href="#catalogo" class="link-more">Ver todos os serviços <svg viewBox="0 0 24 24" width="15" height="15"><use href="#i-arrow"/></svg></a>
     </div>
     <div class="cards-4">
       <div class="card rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><div><h3>Dashboards em Power BI</h3><p>Painéis visuais e interativos para acompanhar seus resultados.</p></div></div>
@@ -598,7 +655,48 @@
       <div class="card rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-bulb"/></svg></div><div><h3>Soluções Personalizadas</h3><p>Tem um desafio específico? Criamos a solução ideal para você.</p></div></div>
     </div>
 
-    <div class="cta-strip rv" style="margin-top:26px">
+    <div class="tech rv">
+      <h4>Tecnologias que utilizamos</h4>
+      <div class="logo-strip">
+        <div class="logo-card">
+          <div class="lg"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="6" y="18" width="7" height="16" rx="2" fill="#F2C811"/><rect x="16.5" y="11" width="7" height="23" rx="2" fill="#E8A700"/><rect x="27" y="5" width="7" height="29" rx="2" fill="#F2C811"/></svg></div>
+          <div class="nm">Power BI</div>
+        </div>
+        <div class="logo-card">
+          <div class="lg"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="5" y="7" width="30" height="26" rx="4" fill="#1D7044"/><rect x="5" y="7" width="30" height="26" rx="4" fill="#21A366" opacity=".85"/><path d="M13 14h14M13 20h14M13 26h14" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".95"/><path d="M20 12v16" stroke="#fff" stroke-width="2" stroke-linecap="round" opacity=".6"/></svg></div>
+          <div class="nm">Excel</div>
+        </div>
+        <div class="logo-card">
+          <div class="lg"><svg viewBox="0 0 40 40" aria-hidden="true"><rect x="4" y="14" width="14" height="14" rx="3" fill="#7C3AED"/><rect x="14" y="8" width="14" height="14" rx="3" fill="#F59E0B"/><rect x="20" y="19" width="14" height="14" rx="3" fill="#EC4899"/></svg></div>
+          <div class="nm">VBA</div>
+        </div>
+        <div class="logo-card">
+          <div class="lg"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M6 9h28l-11 13v11l-6 3V22z" fill="#21A366"/><path d="M6 9h28l-6 7H12z" fill="#1D7044" opacity=".55"/></svg></div>
+          <div class="nm">Power Query</div>
+        </div>
+        <div class="logo-card">
+          <div class="lg"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M22 4 9 22h8l-3 14 16-19h-9z" fill="#0F62CE"/><path d="M22 4 9 22h8z" fill="#3B8AF0"/></svg></div>
+          <div class="nm">Power Automate</div>
+        </div>
+        <div class="logo-card">
+          <div class="lg"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M11 15.5 5.5 20 11 24.5" fill="none" stroke="#356C9F" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M29 15.5 34.5 20 29 24.5" fill="none" stroke="#F2C811" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"/><path d="M23 8 17 32" stroke="#356C9F" stroke-width="3.2" stroke-linecap="round"/></svg></div>
+          <div class="nm">Python</div>
+        </div>
+        <div class="logo-card">
+          <div class="lg"><svg viewBox="0 0 40 40" aria-hidden="true"><ellipse cx="20" cy="10" rx="13" ry="5" fill="#C0392B"/><path d="M7 10v20c0 2.8 5.8 5 13 5s13-2.2 13-5V10" fill="#E05141"/><ellipse cx="20" cy="10" rx="13" ry="5" fill="#C0392B"/><path d="M7 20c0 2.8 5.8 5 13 5s13-2.2 13-5" fill="none" stroke="#fff" stroke-width="1.6" opacity=".7"/></svg></div>
+          <div class="nm">SQL</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="big-card rv" style="margin-top:44px">
+      <h3>Não encontrou o que procura?</h3>
+      <p>Você não precisa saber qual tecnologia usar. Basta explicar o problema, que a Lumanoids analisa o processo e identifica o que pode ser automatizado e melhorado.</p>
+      <div class="quote-box">“Hoje eu preciso baixar vários arquivos, juntar as informações, criar um relatório e enviar por e-mail toda semana.”</div>
+      <a href="#solicitacoes" class="btn btn-blue" onclick="preSelect('Não sei ainda / preciso de ajuda')">Quero explicar meu processo</a>
+    </div>
+
+    <div class="cta-strip rv" style="margin-top:44px">
       <div class="cs-ico"><svg viewBox="0 0 24 24" width="22" height="22"><use href="#i-file"/></svg></div>
       <div>
         <h3>Tem um projeto em mente?</h3>
@@ -613,255 +711,8 @@
   </div>
 </section>
 
-<!-- AUTOMAÇÃO -->
-<section id="automacao" class="band">
-  <div class="wrap">
-    <div class="sec-head-center rv">
-      <p class="eyebrow">Automação de processos</p>
-      <h2 class="title">Automatize o que hoje consome seu tempo</h2>
-      <p class="lead" style="margin-top:12px">Se uma tarefa é repetitiva, manual e acontece sempre da mesma forma, provavelmente ela pode ser automatizada.</p>
-    </div>
-    <div class="cards-4">
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><h3>Planilhas que se atualizam sozinhas</h3><p>Chega de abrir o mesmo Excel toda manhã para colar dados novos e refazer as fórmulas.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-file"/></svg></div><h3>Relatórios prontos sem você montar</h3><p>O relatório de todo dia, toda semana ou todo mês passa a ser gerado automaticamente.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-mail"/></svg></div><h3>E-mails enviados no automático</h3><p>Relatórios e comunicados chegam nas pessoas certas, na hora certa, sem alguém lembrar de enviar.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-gear"/></svg></div><h3>Processos manuais eliminados</h3><p>Aquela sequência de tarefas que sempre alguém precisa fazer na mão passa a rodar sozinha.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-download"/></svg></div><h3>Arquivos gerados automaticamente</h3><p>Planilhas, PDFs e relatórios criados e salvos no formato e no lugar certo, sem trabalho manual.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-link"/></svg></div><h3>Sistemas que passam a conversar</h3><p>Informação sai de um lugar e chega no outro sem ninguém exportar, copiar e colar.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-broom"/></svg></div><h3>Dados tratados e consolidados</h3><p>Vários arquivos, formatos e fontes viram uma base única, limpa e confiável.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><h3>Indicadores sempre atualizados</h3><p>Seus números acompanham o dia a dia da empresa sem depender de atualização manual.</p></div>
-    </div>
-
-    <div class="sec-head-center rv" style="margin-top:64px">
-      <h2 class="title">O mesmo trabalho, sem o trabalho</h2>
-      <p class="lead" style="margin-top:12px">Veja o que muda quando um processo repetitivo vira automação.</p>
-    </div>
-    <div class="compare">
-      <div class="comp-col before rv">
-        <div class="comp-head"><svg viewBox="0 0 24 24"><use href="#i-hand"/></svg> Antes</div>
-        <p class="comp-desc">Tudo feito na mão, toda vez, por uma pessoa.</p>
-        <div class="comp-steps">
-          <div class="comp-step"><span class="dot" style="background:#DC2626"></span> Baixar arquivos</div>
-          <div class="comp-step"><span class="dot" style="background:#DC2626"></span> Copiar e colar</div>
-          <div class="comp-step"><span class="dot" style="background:#DC2626"></span> Tratar dados</div>
-          <div class="comp-step"><span class="dot" style="background:#DC2626"></span> Criar relatório</div>
-          <div class="comp-step"><span class="dot" style="background:#DC2626"></span> Enviar e-mail</div>
-        </div>
-        <p class="comp-loop">↻ E repetir tudo de novo na próxima vez</p>
-        <p class="comp-foot">Tempo gasto: <strong>horas todo mês</strong> · Risco de erro: <strong>alto</strong></p>
-      </div>
-      <div class="comp-col after rv">
-        <div class="comp-head"><svg viewBox="0 0 24 24"><use href="#i-zap"/></svg> Depois</div>
-        <p class="comp-desc">O processo roda sozinho e avisa quando termina.</p>
-        <div class="comp-steps">
-          <div class="comp-step"><span class="dot" style="background:#16A34A"></span> Automação inicia</div>
-          <div class="comp-step"><span class="dot" style="background:#16A34A"></span> Dados processados</div>
-          <div class="comp-step"><span class="dot" style="background:#16A34A"></span> Relatório atualizado</div>
-          <div class="comp-step"><span class="dot" style="background:#16A34A"></span> Envio automático</div>
-        </div>
-        <p class="comp-loop">✓ Acontece de novo sem ninguém precisar lembrar</p>
-        <p class="comp-foot">Sua equipe: <strong>livre para analisar e decidir</strong></p>
-      </div>
-    </div>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px" class="rv">
-      <a href="#solicitacoes" class="btn btn-blue" onclick="preSelect('Automação de processos')">Quero automatizar meu processo</a>
-      <a href="https://wa.me/5511998899271" target="_blank" rel="noopener" class="btn btn-wpp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wpp"/></svg> Tirar uma dúvida</a>
-    </div>
-  </div>
-</section>
-
-<!-- DADOS & BI -->
-<section id="dados" class="band band-bg">
-  <div class="wrap">
-    <div class="sec-head-center rv">
-      <p class="eyebrow">Análise de dados &amp; BI</p>
-      <h2 class="title">Seus números finalmente fazendo sentido</h2>
-      <p class="lead" style="margin-top:12px">Organizamos as informações que hoje estão espalhadas e transformamos em painéis claros para acompanhar a empresa no dia a dia.</p>
-    </div>
-    <div class="cards-4">
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></div><h3>Dashboards em Power BI</h3><p>Painéis visuais para acompanhar sua empresa de forma simples, sem depender de planilhas.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-target"/></svg></div><h3>Indicadores e KPIs</h3><p>Acompanhe vendas, financeiro, equipe, metas e resultados com números confiáveis.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-layers"/></svg></div><h3>Modelagem de dados</h3><p>Diferentes fontes organizadas de um jeito que permite analisar tudo junto.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-broom"/></svg></div><h3>Tratamento de dados</h3><p>Limpamos, padronizamos e organizamos dados espalhados em vários arquivos.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-search"/></svg></div><h3>Análise de desempenho</h3><p>Comparações, tendências e alertas para você enxergar o que está fora do esperado.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-file"/></svg></div><h3>Relatórios gerenciais</h3><p>Informações espalhadas viram relatórios fáceis de ler e de apresentar.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-table"/></svg></div><h3>Painéis executivos</h3><p>Uma visão resumida para quem precisa decidir rápido, sem entrar no detalhe.</p></div>
-      <div class="card card-block rv"><div class="card-ico"><svg viewBox="0 0 24 24"><use href="#i-bulb"/></svg></div><h3>Visualização de dados</h3><p>Gráficos e visuais escolhidos para comunicar, não só para enfeitar.</p></div>
-    </div>
-    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-top:32px" class="rv">
-      <a href="#solicitacoes" class="btn btn-blue" onclick="preSelect('Dashboard / Power BI')">Quero criar meu dashboard</a>
-      <a href="#portfolio" class="btn btn-ghost">Ver exemplos</a>
-    </div>
-  </div>
-</section>
-
-<!-- CATÁLOGO COMPLETO -->
-<section id="catalogo" class="band">
-  <div class="wrap">
-    <div class="sec-head-center rv">
-      <p class="eyebrow">Lista completa</p>
-      <h2 class="title">O que podemos fazer pela sua empresa?</h2>
-      <p class="lead" style="margin-top:12px">Sem termos técnicos. Veja se algum destes itens parece com o que acontece hoje na sua rotina.</p>
-    </div>
-
-    <div class="cat-group rv">
-      <div class="cat-head"><span class="ci"><svg viewBox="0 0 24 24"><use href="#i-chart"/></svg></span><h3>Dados e dashboards</h3></div>
-      <p class="cat-sub">Para quem quer enxergar melhor os próprios números.</p>
-      <div class="cards-3">
-        <div class="card card-block"><h3>Dashboards em Power BI</h3><p>Transformamos seus dados em painéis visuais para você acompanhar sua empresa de forma simples.</p></div>
-        <div class="card card-block"><h3>Análise de dados</h3><p>Organizamos e analisamos seus dados para encontrar informações importantes para o negócio.</p></div>
-        <div class="card card-block"><h3>Indicadores e KPIs</h3><p>Criamos indicadores para acompanhar vendas, financeiro, equipe, metas, resultados e outros processos.</p></div>
-        <div class="card card-block"><h3>Relatórios gerenciais</h3><p>Transformamos informações espalhadas em relatórios fáceis de entender.</p></div>
-        <div class="card card-block"><h3>Modelagem de dados</h3><p>Organizamos diferentes fontes de dados para que elas possam ser analisadas juntas.</p></div>
-        <div class="card card-block"><h3>Tratamento e organização de dados</h3><p>Limpamos, organizamos e padronizamos dados que estão desorganizados ou espalhados em diferentes arquivos.</p></div>
-      </div>
-      <div class="cat-cta"><a href="#solicitacoes" class="btn btn-ghost btn-sm" onclick="preSelect('Dashboard / Power BI')">Solicitar uma solução</a></div>
-    </div>
-
-    <div class="cat-group rv">
-      <div class="cat-head"><span class="ci"><svg viewBox="0 0 24 24"><use href="#i-gear"/></svg></span><h3>Automação de processos</h3></div>
-      <p class="cat-sub">Para quem quer parar de fazer a mesma tarefa toda semana.</p>
-      <div class="cards-3">
-        <div class="card card-block"><h3>Automação de e-mails</h3><p>Automatizamos o envio de e-mails, relatórios, comunicados e informações para as pessoas certas.</p></div>
-        <div class="card card-block"><h3>Automação de relatórios</h3><p>Em vez de montar o mesmo relatório todos os dias ou todas as semanas, criamos processos para fazer isso automaticamente.</p></div>
-        <div class="card card-block"><h3>Automação de Excel</h3><p>Automatizamos tarefas repetitivas dentro do Excel para reduzir trabalho manual e erros.</p></div>
-        <div class="card card-block"><h3>Programação com VBA</h3><p>Criamos sistemas, botões, macros e automações dentro do Excel para facilitar processos.</p></div>
-        <div class="card card-block"><h3>Automação de planilhas</h3><p>Transformamos planilhas manuais em processos mais rápidos e inteligentes.</p></div>
-        <div class="card card-block"><h3>Geração automática de arquivos</h3><p>Criamos processos que geram automaticamente planilhas, relatórios, PDFs e outros arquivos.</p></div>
-        <div class="card card-block"><h3>Consolidação de arquivos</h3><p>Unimos automaticamente informações de vários arquivos e planilhas em uma única base.</p></div>
-        <div class="card card-block"><h3>Automação de processos administrativos</h3><p>Automatizamos tarefas repetitivas que hoje precisam ser feitas manualmente.</p></div>
-      </div>
-      <div class="cat-cta"><a href="#solicitacoes" class="btn btn-ghost btn-sm" onclick="preSelect('Automação de processos')">Solicitar uma solução</a></div>
-    </div>
-
-    <div class="cat-group rv">
-      <div class="cat-head"><span class="ci"><svg viewBox="0 0 24 24"><use href="#i-link"/></svg></span><h3>Integração e inteligência</h3></div>
-      <p class="cat-sub">Para quem precisa juntar informações que hoje vivem em lugares diferentes.</p>
-      <div class="cards-3">
-        <div class="card card-block"><h3>Integração de dados</h3><p>Conectamos informações de diferentes arquivos, sistemas e fontes.</p></div>
-        <div class="card card-block"><h3>Power Query</h3><p>Automatizamos a importação, limpeza e transformação de dados.</p></div>
-        <div class="card card-block"><h3>Power Automate</h3><p>Criamos fluxos automáticos para executar tarefas, enviar informações e movimentar processos.</p></div>
-        <div class="card card-block"><h3>Soluções com Python</h3><p>Desenvolvemos automações e soluções personalizadas para processos que precisam de uma programação mais avançada.</p></div>
-        <div class="card card-block"><h3>Automação personalizada</h3><p>Se existe uma tarefa repetitiva na sua empresa, analisamos o processo e buscamos uma forma de automatizá-lo.</p></div>
-      </div>
-      <div class="cat-cta"><a href="#solicitacoes" class="btn btn-ghost btn-sm" onclick="preSelect('Integração de dados / sistemas')">Solicitar uma solução</a></div>
-    </div>
-
-    <div class="big-card rv">
-      <h3>Sua necessidade não está em um pacote?</h3>
-      <p>Criamos soluções personalizadas de acordo com o seu processo, seus dados e os seus objetivos. Você não precisa saber qual tecnologia usar. Basta explicar o problema.</p>
-      <div class="quote-box">“Hoje eu preciso baixar vários arquivos, juntar as informações, criar um relatório e enviar por e-mail toda semana.”</div>
-      <p style="margin-bottom:22px">A Lumanoids analisa o processo e identifica o que pode ser automatizado e melhorado, combinando <strong style="color:var(--text)">Dados + BI + Automação</strong>.</p>
-      <a href="#solicitacoes" class="btn btn-blue" onclick="preSelect('Não sei ainda / preciso de ajuda')">Quero explicar meu processo</a>
-    </div>
-
-    <div class="tech rv">
-      <h4>Tecnologias que utilizamos</h4>
-      <div class="tech-items">
-        <span class="tech-item">Power BI</span><span class="tech-item">Excel</span><span class="tech-item">VBA</span><span class="tech-item">Power Query</span><span class="tech-item">Power Automate</span><span class="tech-item">Python</span><span class="tech-item">SQL</span>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- PLANOS -->
-<section id="precos" class="band band-bg">
-  <div class="wrap">
-    <div class="sec-head-center rv">
-      <p class="eyebrow">Planos e preços</p>
-      <h2 class="title">Investimento no tamanho certo para o seu projeto</h2>
-      <p class="lead" style="margin-top:12px">Todos os valores são um ponto de partida. O preço final depende da complexidade, das fontes de dados e do tamanho do processo.</p>
-    </div>
-    <div class="tabs rv">
-      <button class="tab active" onclick="showPlan('dash',this)">Dashboards</button>
-      <button class="tab" onclick="showPlan('auto',this)">Automação</button>
-      <button class="tab" onclick="showPlan('custom',this)">Soluções personalizadas</button>
-    </div>
-
-    <div id="plan-dash">
-      <p class="tab-note">Painéis em Power BI, do primeiro dashboard ao painel executivo completo.</p>
-      <div class="plans">
-        <div class="plan a rv">
-          <span class="plan-badge">Básico</span>
-          <h3>Plano Básico</h3>
-          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>150</div><div class="per">por dashboard</div></div>
-          <span class="tag no">Sem manutenção</span>
-          <ul><li>Até 1 tabela de dados</li><li>Até 10 KPIs</li><li>Visualização simples</li><li>Entrega rápida</li></ul>
-          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Básico')">Solicitar</a>
-        </div>
-        <div class="plan b rv">
-          <span class="plan-badge">Intermediário</span>
-          <h3>Plano Intermediário</h3>
-          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>300</div><div class="per">por dashboard</div></div>
-          <span class="tag no">Sem manutenção</span>
-          <ul><li>Até 3 tabelas de dados</li><li>Até 20 KPIs</li><li>Modelagem de dados</li><li>Filtros interativos</li></ul>
-          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Intermediário')">Solicitar</a>
-        </div>
-        <div class="plan c rv">
-          <span class="plan-badge">Avançado</span>
-          <h3>Plano Avançado</h3>
-          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>600</div><div class="per">por dashboard</div></div>
-          <span class="tag yes">Manutenção 20 dias</span>
-          <ul><li>Até 6 tabelas de dados</li><li>Até 20 KPIs</li><li>Indicadores complexos</li><li>Tratamento de dados</li><li>Manutenção por 20 dias</li></ul>
-          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Avançado')">Solicitar</a>
-        </div>
-        <div class="plan d rv">
-          <span class="plan-badge">Dourado</span>
-          <h3>Plano Dourado</h3>
-          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>1.500</div><div class="per">por projeto</div></div>
-          <span class="tag yes">Manutenção 20 dias</span>
-          <ul><li>Até 10+ tabelas de dados</li><li>Indicadores complexos</li><li>Tratamento de dados</li><li>ETL e automações</li><li>Suporte prioritário</li></ul>
-          <a href="#solicitacoes" class="btn btn-blue btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Dourado')">Solicitar agora</a>
-        </div>
-      </div>
-    </div>
-
-    <div id="plan-auto" style="display:none">
-      <p class="tab-note">O valor de uma automação depende do processo: quantas etapas, quantas fontes e com que frequência ela roda. Envie sua solicitação e devolvemos um orçamento fechado.</p>
-      <div class="plans p3">
-        <div class="plan a rv">
-          <span class="plan-badge">Tarefa pontual</span>
-          <h3>Automação simples</h3>
-          <p class="pdesc">Uma tarefa repetitiva, um arquivo, um resultado.</p>
-          <div class="amount"><div class="from">Investimento</div><div class="value sob">Sob orçamento</div><div class="per">avaliação gratuita</div></div>
-          <ul><li>Automação de uma planilha ou rotina</li><li>Macro ou botão no Excel (VBA)</li><li>Geração automática de um arquivo</li><li>Treinamento de uso</li></ul>
-          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Automação de processos','Automação simples')">Solicitar orçamento</a>
-        </div>
-        <div class="plan c rv">
-          <span class="plan-badge">Rotina completa</span>
-          <h3>Automação de processo</h3>
-          <p class="pdesc">Do arquivo bruto ao relatório enviado, sem intervenção manual.</p>
-          <div class="amount"><div class="from">Investimento</div><div class="value sob">Sob orçamento</div><div class="per">avaliação gratuita</div></div>
-          <ul><li>Consolidação de vários arquivos</li><li>Tratamento e padronização dos dados</li><li>Relatório gerado automaticamente</li><li>Envio automático por e-mail</li><li>Acompanhamento pós-entrega</li></ul>
-          <a href="#solicitacoes" class="btn btn-blue btn-sm btn-block" onclick="preSelect('Automação de processos','Automação de processo completo')">Solicitar orçamento</a>
-        </div>
-        <div class="plan b rv">
-          <span class="plan-badge">Contínuo</span>
-          <h3>Automação + indicadores</h3>
-          <p class="pdesc">A automação alimenta o painel, e o painel se atualiza sozinho.</p>
-          <div class="amount"><div class="from">Investimento</div><div class="value sob">Sob orçamento</div><div class="per">avaliação gratuita</div></div>
-          <ul><li>Automação do processo de dados</li><li>Dashboard conectado à automação</li><li>Indicadores sem trabalho manual</li><li>Integração entre sistemas</li><li>Suporte prioritário</li></ul>
-          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Automação de processos','Automação + indicadores')">Solicitar orçamento</a>
-        </div>
-      </div>
-    </div>
-
-    <div id="plan-custom" style="display:none">
-      <p class="tab-note">Nem todo projeto cabe em um pacote pronto. Conte o problema e montamos o escopo com você.</p>
-      <div class="big-card rv">
-        <h3>Dados + BI + Automação, do seu jeito</h3>
-        <p>Combinamos os três serviços de acordo com o que a sua empresa precisa. Você explica o processo, a Lumanoids analisa o que dá para melhorar e apresenta uma proposta com escopo, prazo e valor definidos antes de começar.</p>
-        <div class="quote-box">“Não sei bem o que preciso, só sei que perco muito tempo com isso todo mês.”</div>
-        <a href="#solicitacoes" class="btn btn-blue" onclick="preSelect('Não sei ainda / preciso de ajuda')">Quero explicar meu processo</a>
-      </div>
-    </div>
-
-    <div class="disclaimer rv"><strong>Todos os valores são apresentados como “a partir de”.</strong><br>O investimento varia conforme a complexidade do projeto • Escopo definido antes do início • Ajustes pós-entrega sob avaliação</div>
-  </div>
-</section>
-
 <!-- PROCESSO -->
-<section class="band">
+<section class="band band-bg">
   <div class="wrap">
     <div class="sec-head-center rv">
       <p class="eyebrow">Como trabalhamos</p>
@@ -879,7 +730,7 @@
 </section>
 
 <!-- PORTFÓLIO -->
-<section id="portfolio" class="band band-bg">
+<section id="portfolio" class="band">
   <div class="wrap">
     <div class="sec-head-center rv">
       <p class="eyebrow">Portfólio</p>
@@ -887,17 +738,12 @@
       <p class="lead" style="margin-top:12px">Modelos criados pela Lumanoids para diferentes áreas do negócio. Clique para navegar entre eles.</p>
     </div>
     <div class="rv">
-      <p class="pf-cat">Dashboards</p>
       <div class="pf-tabs">
         <button class="pf-tab active" onclick="showDash('financeiro',this)">Financeiro</button>
         <button class="pf-tab" onclick="showDash('vendas',this)">Vendas</button>
         <button class="pf-tab" onclick="showDash('ecommerce',this)">E-commerce</button>
         <button class="pf-tab" onclick="showDash('equipe',this)">Gestão de equipe</button>
-      </div>
-      <p class="pf-cat">Automações</p>
-      <div class="pf-tabs">
         <button class="pf-tab" onclick="showDash('autorel',this)">Relatórios automáticos</button>
-        <button class="pf-tab" onclick="showDash('autoemail',this)">E-mails automáticos</button>
         <button class="pf-tab" onclick="showDash('autoexcel',this)">Excel e consolidação</button>
       </div>
     </div>
@@ -1067,37 +913,6 @@
       </div>
     </div>
 
-    <div class="pf-view rv" id="dash-autoemail" style="display:none">
-      <div class="pf-head"><h3>Envio automático de e-mails e comunicados</h3><span class="pill">Diário</span></div>
-      <div class="kpis k3">
-        <div class="kpi"><div class="lbl">E-mails no mês</div><div class="val" style="color:var(--blue)">320</div><div class="chg">enviados sozinhos</div></div>
-        <div class="kpi"><div class="lbl">Esquecimentos</div><div class="val" style="color:var(--green)">0</div><div class="chg">nada depende de lembrar</div></div>
-        <div class="kpi"><div class="lbl">Tempo da equipe</div><div class="val">-90%</div><div class="chg">dedicado a outras tarefas</div></div>
-      </div>
-      <div class="charts ceq">
-        <div class="cbox">
-          <div class="cbox-t">Quem recebe o quê</div>
-          <table class="mini">
-            <tr><th>Envio</th><th>Destino</th><th>Quando</th></tr>
-            <tr><td>Resumo de vendas</td><td>Diretoria</td><td>Diário 08h</td></tr>
-            <tr><td>Pendências em aberto</td><td>Operação</td><td>Diário 09h</td></tr>
-            <tr><td>Fechamento do mês</td><td>Financeiro</td><td>Dia 1º</td></tr>
-            <tr><td>Comunicado de atualização</td><td>Todos</td><td>A cada versão</td></tr>
-          </table>
-        </div>
-        <div class="cbox">
-          <div class="cbox-t">Fluxo do envio</div>
-          <div class="logs">
-            <div class="log"><span class="ok">1</span> Automação lê a base atualizada</div>
-            <div class="log"><span class="ok">2</span> Monta o conteúdo de cada e-mail</div>
-            <div class="log"><span class="ok">3</span> Anexa o arquivo correspondente</div>
-            <div class="log"><span class="ok">4</span> Envia para a lista certa</div>
-            <div class="log"><span class="ok">5</span> Registra o envio para conferência</div>
-          </div>
-        </div>
-      </div>
-    </div>
-
     <div class="pf-view rv" id="dash-autoexcel" style="display:none">
       <div class="pf-head"><h3>Consolidação de planilhas e processamento de Excel</h3><span class="pill">Sob demanda ou agendado</span></div>
       <div class="kpis k3">
@@ -1135,34 +950,131 @@
   </div>
 </section>
 
-<!-- SOBRE -->
-<section id="sobre" class="band">
+<!-- PLANOS -->
+<section id="precos" class="band band-bg">
   <div class="wrap">
-    <div class="about">
-      <div class="about-box rv">
-        <div class="ab-logo">Lumanoids</div>
-        <div class="ab-tag">Dados • Automação • Inteligência</div>
-        <div class="ab-quote">“Transformamos dados em informação, processos manuais em automações e informações em decisões.”</div>
-      </div>
-      <div class="about-text rv">
-        <p class="eyebrow">Nossa história</p>
-        <h2 class="title" style="margin-bottom:16px">Tecnologia para quem não precisa entender de tecnologia</h2>
-        <p>A <strong>Lumanoids</strong> nasceu da observação de um problema real: empresas com dados abundantes e rotinas cheias de tarefas manuais, mas sem tempo e sem clareza para agir.</p>
-        <p>Nossa missão é <strong>tirar o trabalho repetitivo do caminho</strong> e deixar as informações acessíveis para gestores e donos de negócio, sem precisar saber programar ou montar planilhas complexas.</p>
-        <p>Você não precisa saber o que é VBA, Power Query ou ETL. Você só precisa saber que existe um problema na empresa, e a Lumanoids ajuda a resolver.</p>
-        <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:20px">
-          <a href="#solicitacoes" class="btn btn-blue">Solicitar projeto</a>
-          <a href="https://wa.me/5511998899271" target="_blank" rel="noopener" class="btn btn-wpp"><svg viewBox="0 0 24 24" fill="currentColor"><use href="#i-wpp"/></svg> Conversar</a>
+    <div class="sec-head-center rv">
+      <p class="eyebrow">Investimento</p>
+      <h2 class="title">Planos e preços</h2>
+      <p class="lead" style="margin-top:12px">Todos os valores são um ponto de partida. O preço final depende da complexidade, das fontes de dados e do tamanho do processo.</p>
+    </div>
+    <div class="tabs rv">
+      <button class="tab active" onclick="showPlan('dash',this)">Dashboards</button>
+      <button class="tab" onclick="showPlan('auto',this)">Automação</button>
+      <button class="tab" onclick="showPlan('custom',this)">Soluções personalizadas</button>
+    </div>
+
+    <div id="plan-dash">
+      <p class="tab-note">Painéis em Power BI, do primeiro dashboard ao painel executivo completo.</p>
+      <div class="plans">
+        <div class="plan a rv">
+          <span class="plan-badge">Básico</span>
+          <h3>Plano Básico</h3>
+          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>150</div><div class="per">por dashboard</div></div>
+          <span class="tag no">Sem manutenção</span>
+          <ul><li>Até 1 tabela de dados</li><li>Até 10 KPIs</li><li>Visualização simples</li><li>Entrega rápida</li></ul>
+          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Básico')">Solicitar</a>
+        </div>
+        <div class="plan b rv">
+          <span class="plan-badge">Intermediário</span>
+          <h3>Plano Intermediário</h3>
+          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>300</div><div class="per">por dashboard</div></div>
+          <span class="tag no">Sem manutenção</span>
+          <ul><li>Até 3 tabelas de dados</li><li>Até 20 KPIs</li><li>Modelagem de dados</li><li>Filtros interativos</li></ul>
+          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Intermediário')">Solicitar</a>
+        </div>
+        <div class="plan c rv">
+          <span class="plan-badge">Avançado</span>
+          <h3>Plano Avançado</h3>
+          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>600</div><div class="per">por dashboard</div></div>
+          <span class="tag yes">Manutenção 20 dias</span>
+          <ul><li>Até 6 tabelas de dados</li><li>Até 20 KPIs</li><li>Indicadores complexos</li><li>Tratamento de dados</li><li>Manutenção por 20 dias</li></ul>
+          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Avançado')">Solicitar</a>
+        </div>
+        <div class="plan d rv">
+          <span class="plan-badge">Dourado</span>
+          <h3>Plano Dourado</h3>
+          <div class="amount"><div class="from">A partir de</div><div class="value"><span>R$</span>1.500</div><div class="per">por projeto</div></div>
+          <span class="tag yes">Manutenção 20 dias</span>
+          <ul><li>Até 10+ tabelas de dados</li><li>Indicadores complexos</li><li>Tratamento de dados</li><li>ETL e automações</li><li>Suporte prioritário</li></ul>
+          <a href="#solicitacoes" class="btn btn-blue btn-sm btn-block" onclick="preSelect('Dashboard / Power BI','Dourado')">Solicitar agora</a>
         </div>
       </div>
     </div>
+
+    <div id="plan-auto" style="display:none">
+      <p class="tab-note">O valor de uma automação depende do processo: quantas etapas, quantas fontes e com que frequência ela roda. Envie sua solicitação e devolvemos um orçamento fechado.</p>
+      <div class="plans p3">
+        <div class="plan a rv">
+          <span class="plan-badge">Tarefa pontual</span>
+          <h3>Automação simples</h3>
+          <p class="pdesc">Uma tarefa repetitiva, um arquivo, um resultado.</p>
+          <div class="amount"><div class="from">Investimento</div><div class="value sob">Sob orçamento</div><div class="per">avaliação gratuita</div></div>
+          <ul><li>Automação de uma planilha ou rotina</li><li>Macro ou botão no Excel (VBA)</li><li>Geração automática de um arquivo</li><li>Treinamento de uso</li></ul>
+          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Automação de processos','Automação simples')">Solicitar orçamento</a>
+        </div>
+        <div class="plan c rv">
+          <span class="plan-badge">Rotina completa</span>
+          <h3>Automação de processo</h3>
+          <p class="pdesc">Do arquivo bruto ao relatório enviado, sem intervenção manual.</p>
+          <div class="amount"><div class="from">Investimento</div><div class="value sob">Sob orçamento</div><div class="per">avaliação gratuita</div></div>
+          <ul><li>Consolidação de vários arquivos</li><li>Tratamento e padronização dos dados</li><li>Relatório gerado automaticamente</li><li>Envio automático por e-mail</li><li>Acompanhamento pós-entrega</li></ul>
+          <a href="#solicitacoes" class="btn btn-blue btn-sm btn-block" onclick="preSelect('Automação de processos','Automação de processo completo')">Solicitar orçamento</a>
+        </div>
+        <div class="plan b rv">
+          <span class="plan-badge">Contínuo</span>
+          <h3>Automação + indicadores</h3>
+          <p class="pdesc">A automação alimenta o painel, e o painel se atualiza sozinho.</p>
+          <div class="amount"><div class="from">Investimento</div><div class="value sob">Sob orçamento</div><div class="per">avaliação gratuita</div></div>
+          <ul><li>Automação do processo de dados</li><li>Dashboard conectado à automação</li><li>Indicadores sem trabalho manual</li><li>Integração entre sistemas</li><li>Suporte prioritário</li></ul>
+          <a href="#solicitacoes" class="btn btn-ghost btn-sm btn-block" onclick="preSelect('Automação de processos','Automação + indicadores')">Solicitar orçamento</a>
+        </div>
+      </div>
+    </div>
+
+    <div id="plan-custom" style="display:none">
+      <p class="tab-note">Nem todo projeto cabe em um pacote pronto. Conte o problema e montamos o escopo com você.</p>
+      <div class="big-card rv">
+        <h3>Dados + BI + Automação, do seu jeito</h3>
+        <p>Combinamos os três serviços de acordo com o que a sua empresa precisa. Você explica o processo, a Lumanoids analisa o que dá para melhorar e apresenta uma proposta com escopo, prazo e valor definidos antes de começar.</p>
+        <div class="quote-box">“Não sei bem o que preciso, só sei que perco muito tempo com isso todo mês.”</div>
+        <a href="#solicitacoes" class="btn btn-blue" onclick="preSelect('Não sei ainda / preciso de ajuda')">Quero explicar meu processo</a>
+      </div>
+    </div>
+
+    <div class="disclaimer rv"><strong>Todos os valores são apresentados como “a partir de”.</strong><br>O investimento varia conforme a complexidade do projeto • Escopo definido antes do início • Ajustes pós-entrega sob avaliação</div>
   </div>
 </section>
 
-<!-- SOLICITAÇÕES -->
-<section id="solicitacoes" class="band band-bg">
-  <span id="orcamento"></span>
+<!-- CONTATO -->
+<section id="contato" class="band">
   <div class="wrap">
+    <div class="sec-head-center rv">
+      <p class="eyebrow">Contato</p>
+      <h2 class="title">Fale com a gente</h2>
+    </div>
+    <div class="contacts">
+      <a href="https://wa.me/5511998899271" target="_blank" rel="noopener" class="contact rv">
+        <div class="ci" style="background:var(--green-bg);color:var(--green)"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><use href="#i-wpp"/></svg></div>
+        <h3>WhatsApp</h3><p>(11) 9 9889-9271<br>Resposta rápida</p>
+      </a>
+      <a href="#solicitacoes" class="contact rv">
+        <div class="ci"><svg viewBox="0 0 24 24" width="22" height="22"><use href="#i-file"/></svg></div>
+        <h3>Solicitações</h3><p>Formulário de projetos<br>Resposta em até 24h</p>
+      </a>
+      <a href="mailto:luma.sampaio.dados@gmail.com" class="contact rv">
+        <div class="ci"><svg viewBox="0 0 24 24" width="22" height="22"><use href="#i-mail"/></svg></div>
+        <h3>E-mail</h3><p>luma.sampaio.dados@gmail.com</p>
+      </a>
+      <a href="https://www.instagram.com/luma.noids/" target="_blank" rel="noopener" class="contact rv">
+        <div class="ci"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.2" fill="currentColor" stroke="none"/></svg></div>
+        <h3>Instagram</h3><p>@luma.noids<br>Siga e acompanhe</p>
+      </a>
+    </div>
+
+
+<!-- SOLICITAÇÕES -->
+<div id="solicitacoes" style="margin-top:58px;padding-top:50px;border-top:1px solid var(--line)"><span id="orcamento"></span>
     <div class="sec-head-center rv">
       <p class="eyebrow">Solicitações</p>
       <h2 class="title">Envie sua solicitação</h2>
@@ -1244,33 +1156,6 @@
         <button type="submit" class="btn btn-blue btn-block fsubmit" id="submitBtn">Enviar solicitação <svg viewBox="0 0 24 24"><use href="#i-send"/></svg></button>
       </form>
     </div>
-  </div>
-</section>
-
-<!-- CONTATO -->
-<section id="contato" class="band">
-  <div class="wrap">
-    <div class="sec-head-center rv">
-      <p class="eyebrow">Contato</p>
-      <h2 class="title">Fale com a gente</h2>
-    </div>
-    <div class="contacts">
-      <a href="https://wa.me/5511998899271" target="_blank" rel="noopener" class="contact rv">
-        <div class="ci" style="background:var(--green-bg);color:var(--green)"><svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><use href="#i-wpp"/></svg></div>
-        <h3>WhatsApp</h3><p>(11) 9 9889-9271<br>Resposta rápida</p>
-      </a>
-      <a href="#solicitacoes" class="contact rv">
-        <div class="ci"><svg viewBox="0 0 24 24" width="22" height="22"><use href="#i-file"/></svg></div>
-        <h3>Solicitações</h3><p>Formulário de projetos<br>Resposta em até 24h</p>
-      </a>
-      <a href="mailto:luma.sampaio.dados@gmail.com" class="contact rv">
-        <div class="ci"><svg viewBox="0 0 24 24" width="22" height="22"><use href="#i-mail"/></svg></div>
-        <h3>E-mail</h3><p>luma.sampaio.dados@gmail.com</p>
-      </a>
-      <a href="https://www.instagram.com/luma.noids/" target="_blank" rel="noopener" class="contact rv">
-        <div class="ci"><svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.7"><rect x="3.5" y="3.5" width="17" height="17" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17" cy="7" r="1.2" fill="currentColor" stroke="none"/></svg></div>
-        <h3>Instagram</h3><p>@luma.noids<br>Siga e acompanhe</p>
-      </a>
     </div>
 
     <div class="final-cta rv" style="margin-top:38px">
@@ -1286,12 +1171,12 @@
 
 <footer class="main-foot">
   <div class="fl">
-    <a href="#dados">Dados &amp; BI</a>
-    <a href="#automacao">Automação</a>
-    <a href="#catalogo">Serviços</a>
-    <a href="#precos">Planos</a>
+    <a href="#hero">Início</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#servicos">Nossos Serviços</a>
+    <a href="#precos">Planos e Preços</a>
     <a href="#portfolio">Portfólio</a>
-    <a href="#solicitacoes">Solicitações</a>
+    <a href="#contato">Contato</a>
     <a href="#" onclick="openModal('termos');return false">Termos de uso</a>
     <a href="#" onclick="openModal('privacidade');return false">Privacidade</a>
   </div>
@@ -1329,11 +1214,25 @@
   /* menu mobile */
   const sidebar = document.getElementById('sidebar');
   const overlay = document.getElementById('sbOverlay');
-  document.getElementById('hamburger').addEventListener('click', () => {
-    sidebar.classList.toggle('open'); overlay.classList.toggle('open');
+  const hbBtn = document.getElementById('hamburger');
+  const hbLabel = document.getElementById('hbLabel');
+  hbBtn.addEventListener('click', () => {
+    const aberto = sidebar.classList.toggle('open');
+    overlay.classList.toggle('open', aberto);
+    hbLabel.textContent = aberto ? 'Fechar' : 'Menu';
+    hbBtn.setAttribute('aria-expanded', aberto ? 'true' : 'false');
+    hbBtn.setAttribute('aria-label', aberto ? 'Fechar menu' : 'Abrir menu');
+    document.body.style.overflow = aberto ? 'hidden' : '';
   });
   overlay.addEventListener('click', closeMenu);
-  function closeMenu(){ sidebar.classList.remove('open'); overlay.classList.remove('open'); }
+  document.getElementById('sbClose').addEventListener('click', closeMenu);
+  function closeMenu(){
+    sidebar.classList.remove('open'); overlay.classList.remove('open');
+    hbLabel.textContent = 'Menu';
+    hbBtn.setAttribute('aria-expanded','false');
+    hbBtn.setAttribute('aria-label','Abrir menu');
+    document.body.style.overflow = '';
+  }
   document.querySelectorAll('.sb-link, .sb-logo, .sb-wpp').forEach(a => a.addEventListener('click', closeMenu));
 
   /* item ativo na sidebar conforme a rolagem */
@@ -1349,7 +1248,7 @@
   secs.forEach(s => spy.observe(s));
 
   /* portfólio */
-  const DASHES = ['financeiro','vendas','ecommerce','equipe','autorel','autoemail','autoexcel'];
+  const DASHES = ['financeiro','vendas','ecommerce','equipe','autorel','autoexcel'];
   function showDash(id, btn) {
     DASHES.forEach(d => { const el = document.getElementById('dash-'+d); if (el) el.style.display = 'none'; });
     document.querySelectorAll('.pf-tab').forEach(b => b.classList.remove('active'));
